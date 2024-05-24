@@ -1,22 +1,17 @@
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
-import authentication.AuthenticationView
-import authentication.AuthenticationViewModel
-import authentication.MainScreen
-import authentication.MainScreenViewModel
 import cafe.adriel.voyager.navigator.Navigator
+import features.authentication.data.firebase.Firebase
+import features.authentication.presentation.AuthScreen
 
 
 @Composable
 fun App() {
-
-    val authenticationViewModel = AuthenticationViewModel()
-    val mainScreenViewModel = MainScreenViewModel()
-
+    val API_KEY = "AIzaSyAoMlUjpPAkVjZLhoOI8phPhFPsa5DsOnU"
+    val DATABASE_URL = "https://fitnessconnect-3e757-default-rtdb.firebaseio.com"
+    val firebase = Firebase()
+    firebase.initialize(apiKey = API_KEY, databaseUrl = DATABASE_URL)
     MaterialTheme {
-            Navigator(
-                screen = AuthenticationView(authenticationViewModel),
-                onBackPressed = { currentScreen -> true })
-
+            Navigator(screen = AuthScreen())
     }
 }

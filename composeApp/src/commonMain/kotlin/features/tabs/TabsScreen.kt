@@ -1,13 +1,10 @@
-package authentication
+package features.tabs
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -15,23 +12,18 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
-import authentication.AuthenticationView
-import authentication.AuthenticationViewModel
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import mainview.chat.ChatScreen
 import mainview.chat.home.HomeScreen
 import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 
 sealed class BottomNavigationScreen(val title:String) {
     object HomeScreen : BottomNavigationScreen("Home")
@@ -58,7 +50,7 @@ val bottomNavigationItems = listOf(
 
 
 @OptIn(ExperimentalResourceApi::class)
-data class MainScreen(var mainScreenViewModel: MainScreenViewModel) : Screen {
+data class TabsScreen(var mainScreenViewModel: TabsScreenViewModel) : Screen {
     @Composable
     override fun Content() {
         val selectedIndex = remember { mutableStateOf(0) }
