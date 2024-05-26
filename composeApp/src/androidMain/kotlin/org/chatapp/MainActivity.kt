@@ -6,13 +6,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.chatapp.firebaseauthentication.AndroidDatabaseDatabaseDriverFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        //Create instance of DriverFactory for Android
+        val driverFactory = AndroidDatabaseDatabaseDriverFactory(this)
         setContent {
-            App()
+            App(driverFactory.createDriver())
         }
     }
 }
@@ -20,5 +22,4 @@ class MainActivity : ComponentActivity() {
 @Preview
 @Composable
 fun AppAndroidPreview() {
-    App()
 }

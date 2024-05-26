@@ -4,10 +4,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class TokenResponse(
-    val expiresIn: String,
-    val tokenType: String,
-    val refreshToken: String,
-    val idToken: String,
-    val userId: String,
-    val projectId: String
+    val expires_in: String,
+    val token_type: String,
+    val refresh_token: String,
+    val id_token: String,
+    val user_id: String,
+    val project_id: String
 )

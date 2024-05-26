@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.sqlDelight)
 }
 
 kotlin {
@@ -25,7 +26,10 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
+            // This should be set to false to run on iOS
+            isStatic = false
+            // Add it to avoid sqllite3 issues in iOS
+            linkerOpts.add("-lsqlite3")
         }
     }
     
@@ -35,6 +39,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.android.driver)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -54,11 +59,29 @@ kotlin {
             implementation(libs.moko.mvvm.core)
             implementation(libs.moko.mvvm.compose)
             implementation(libs.kamel)
+
             // Navigator
             implementation(libs.voyager.navigator)
 
+            //SqlDelight for common
+            implementation(libs.runtime)
+
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+            implementation(libs.native.driver)
         }
     }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("com.chatapp.firebaseauthentication")
+        }
+    }
+    // Add this line to avoid library linking issues
+    linkSqlite = true
 }
 
 android {

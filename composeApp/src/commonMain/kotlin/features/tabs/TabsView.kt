@@ -50,7 +50,7 @@ val bottomNavigationItems = listOf(
 
 
 @OptIn(ExperimentalResourceApi::class)
-data class TabsScreen(var mainScreenViewModel: TabsScreenViewModel) : Screen {
+data class TabsView(var mainScreenViewModel: TabsViewModel) : Screen {
     @Composable
     override fun Content() {
         val selectedIndex = remember { mutableStateOf(0) }
