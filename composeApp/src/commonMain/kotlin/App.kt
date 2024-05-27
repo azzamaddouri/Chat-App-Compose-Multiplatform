@@ -2,14 +2,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import app.cash.sqldelight.db.SqlDriver
 import cafe.adriel.voyager.navigator.Navigator
-import comchatappfirebaseauthentication.User
 import di.AppModule
 import features.authentication.data.firebase.Firebase
 import features.authentication.data.firebase.FirebaseUser
 import features.authentication.presentation.AuthViewModel
 import features.authentication.presentation.event.CheckSessionEvent
 import features.authentication.presentation.view.AuthView
-import features.tabs.TabsView
+import features.tabs.presentation.view.TabsView
 import features.tabs.TabsViewModel
 
 @Composable
@@ -17,13 +16,12 @@ fun App(sqlDriver: SqlDriver) {
     // Initialize Firebase and set up dependencies
     val firebase = remember { Firebase() }
     val API_KEY = "AIzaSyAoMlUjpPAkVjZLhoOI8phPhFPsa5DsOnU"
-    val DATABASE_URL = "https://fitnessconnect-3e757-default-rtdb.firebaseio.com"
+    val DATABASE_URL = "https://fir-kmp-b3c41-default-rtdb.firebaseio.com"
     firebase.initialize(apiKey = API_KEY, databaseUrl = DATABASE_URL)
     AppModule.setSqlDriver(sqlDriver)
 
     // ViewModels and state management
     val authViewModel = remember { AuthViewModel(AppModule.AuthRepository) }
-    val mainScreenViewModel = remember { TabsViewModel() }
     val checkSessionState by authViewModel.checkSessionState.collectAsState()
 
     // State to manage session existence
@@ -65,7 +63,7 @@ fun App(sqlDriver: SqlDriver) {
         MaterialTheme {
             if (sessionExist) {
                 Navigator(
-                    screen = TabsView(mainScreenViewModel),
+                    screen = TabsView(),
                     onBackPressed = { currentScreen -> true }
                 )
             } else {

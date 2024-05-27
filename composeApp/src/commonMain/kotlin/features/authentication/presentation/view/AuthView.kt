@@ -48,8 +48,7 @@ import features.authentication.presentation.event.SignInEvent
 import features.authentication.presentation.event.SignUpEvent
 import features.authentication.presentation.state.SignInState
 import features.authentication.presentation.state.SignUpState
-import features.tabs.TabsView
-import features.tabs.TabsViewModel
+import features.tabs.presentation.view.TabsView
 import org.jetbrains.compose.resources.painterResource
 import kotlinx.coroutines.launch
 
@@ -177,7 +176,7 @@ private fun SignInContent(
                     Button(
                         onClick = {
                             dialogOpen = false
-                            navigator.push(TabsView(TabsViewModel()))
+                            navigator.push(TabsView())
                         }
                     ) {
                         Text("OK")
@@ -344,7 +343,7 @@ private fun SignUpContent(
                     Button(
                         onClick = {
                             dialogOpen = false
-                            navigator.push(TabsView(TabsViewModel()))
+                            navigator.push(TabsView())
                         }
                     ) {
                         Text("OK")

@@ -12,17 +12,11 @@ class SqlDelight( sqlDriver: SqlDriver) {
     internal fun storeUserDetails(response: AuthResponse) {
         databaseQuery.insertUser(
             response.idToken, response.email, response.refreshToken,
-            response.email,response.localId
+            response.email, response.localId
         )
     }
     internal fun getAllUsers(): List<User> {
-        val userList = mutableListOf<User>()
-
-        for(user in databaseQuery.selectAllUsers().executeAsList()) {
-            userList.add(user)
-        }
-
-        return userList
+        return databaseQuery.selectAllUsers().executeAsList()
     }
 
 }
