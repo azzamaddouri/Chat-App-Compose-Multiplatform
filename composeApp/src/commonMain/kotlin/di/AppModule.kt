@@ -4,6 +4,9 @@ import app.cash.sqldelight.db.SqlDriver
 import features.authentication.data.firebase.FirebaseAuth
 import features.authentication.data.repository.AuthRepositoryImp
 import features.authentication.domain.AuthRepository
+import features.chat.data.firebaseDB.FirebaseDatabase
+import features.chat.data.repository.ChatRepositoryImp
+import features.chat.domain.ChatRepository
 import features.tabs.data.repository.UserRepositoryImp
 import features.tabs.domain.UserRepository
 
@@ -26,5 +29,9 @@ object AppModule{
 
     val UserRepository: UserRepository by lazy {
         UserRepositoryImp(sqlDelightUser)
+    }
+
+    val chatRepository: ChatRepository by lazy {
+        ChatRepositoryImp(firebaseDatabase = FirebaseDatabase())
     }
 }

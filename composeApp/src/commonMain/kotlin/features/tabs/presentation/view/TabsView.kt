@@ -1,4 +1,5 @@
 package features.tabs.presentation.view
+import ChatView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -16,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,13 +31,11 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import di.AppModule
 import features.authentication.data.firebase.Firebase
-import features.authentication.presentation.event.SignInEvent
 import features.authentication.presentation.view.AuthView
 import features.home.presentation.HomeView
 import features.tabs.TabsViewModel
 import features.tabs.presentation.event.LogoutEvent
 import kotlinx.coroutines.launch
-import mainview.chat.ChatScreen
 
 sealed class BottomNavigationScreen(val title:String) {
     object HomeScreen : BottomNavigationScreen("Home")
@@ -127,7 +125,7 @@ class TabsView() : Screen {
         ) {
             when (selectedIndex.value) {
                 0 -> HomeView()
-                1 -> ChatScreen()
+                1 -> ChatView()
             }
         }
     }
