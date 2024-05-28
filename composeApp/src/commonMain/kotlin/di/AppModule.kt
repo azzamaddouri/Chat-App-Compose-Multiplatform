@@ -7,6 +7,8 @@ import features.authentication.domain.AuthRepository
 import features.chat.data.firebaseDB.FirebaseDatabase
 import features.chat.data.repository.ChatRepositoryImp
 import features.chat.domain.ChatRepository
+import features.home.data.MessageRepositoryImp
+import features.home.domain.MessageRepository
 import features.tabs.data.repository.UserRepositoryImp
 import features.tabs.domain.UserRepository
 
@@ -33,5 +35,9 @@ object AppModule{
 
     val chatRepository: ChatRepository by lazy {
         ChatRepositoryImp(firebaseDatabase = FirebaseDatabase())
+    }
+
+    val messageRepository: MessageRepository by lazy {
+        MessageRepositoryImp(firebaseDatabase = FirebaseDatabase())
     }
 }

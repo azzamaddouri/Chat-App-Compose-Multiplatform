@@ -32,7 +32,7 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import di.AppModule
 import features.authentication.data.firebase.Firebase
 import features.authentication.presentation.view.AuthView
-import features.home.presentation.HomeView
+import features.home.presentation.view.HomeView
 import features.tabs.TabsViewModel
 import features.tabs.presentation.event.LogoutEvent
 import kotlinx.coroutines.launch
