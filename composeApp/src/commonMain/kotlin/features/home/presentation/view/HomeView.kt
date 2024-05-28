@@ -19,7 +19,12 @@ import kotlinx.coroutines.launch
 fun HomeView() {
     val viewModel = remember { HomeViewModel(AppModule.messageRepository) }
     val getMessagesState by viewModel.getMessagesState.collectAsState()
-
+    val scope = rememberCoroutineScope()
+    LaunchedEffect(Unit) {
+        scope.launch(Dispatchers.IO) {
+            viewModel.onGetMessagesEvent(GetMessagesEvent.GetMessages)
+        }
+    }
     Scaffold {
         ChatList(messages= getMessagesState.messageList, _onRefresh = {
             viewModel.onGetMessagesEvent(GetMessagesEvent.GetMessages)
